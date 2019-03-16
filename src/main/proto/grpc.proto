@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package dev.vihang;
+
+option java_multiple_files = true;
+option java_package = "dev.vihang";
+
+// Setting [unsignedInt64Field] to value greater than `55903` causes [ByteString] of [Message] to be invalid `UTF-8`.
+message MessagePart {
+  uint64 unsignedInt64Field = 1;
+}
+
+message Message {
+  repeated MessagePart parts = 1;
+}
+
+
+// Setting repeated `Unsigned Int64` generates code which does not compile.
+// Uncomment below lines and then do `./gradlew clean build`
+
+//message Message2 {
+//  repeated uint64 unsignedInt64Field = 1;
+//}
